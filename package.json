@@ -1,0 +1,17 @@
+{
+  "name": "binClock",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "express": "~4.2.0",
+    "serve-favicon": "~2.1.6",
+    "morgan": "~1.0.0",
+    "debug": "~0.7.4",
+    "jade": "~1.3.0",
+    "less-middleware": "1.0.x",
+    "all-your-base": ">=0.1.1"
+  }
+}
