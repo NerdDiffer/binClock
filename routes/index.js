@@ -7,7 +7,7 @@ router.get('/', function(req, res) {
 });
 
 router.get('/binary', function(req, res) {
-  res.render('binary', { title: 'Binary clock' });
+  res.render('binary', { title: 'binary clock' });
 });
 
 module.exports = router;
