@@ -1,0 +1,68 @@
+extends index
+block content
+  table
+    thead 
+      tr
+        th(colspan='2') HH
+        th(colspan='2') MM
+        th(colspan='2') SS
+    tbody
+      // 2^3 = 8
+      tr(class='base') 
+        td(class='null')
+        td(class='dot')
+        td(class='null')
+        td(class='dot')
+        td(class='null')
+        td(class='dot')
+      // 2^2 = 4
+      tr(class='base')
+        td(class='null')
+        td(class='dot')
+        td(class='dot')
+        td(class='dot')
+        td(class='dot')
+        td(class='dot')
+      // 2^1 = 2
+      tr(class='base') 
+        td(class='dot')
+        td(class='dot')
+        td(class='dot')
+        td(class='dot')
+        td(class='dot')
+        td(class='dot')
+      // 2^0 = 1
+      tr(class='base') 
+        td(class='dot')
+        td(class='dot')
+        td(class='dot')
+        td(class='dot')
+        td(class='dot')
+        td(class='dot')
+      // show binary value of column 
+      tr(class='showBin') 
+        td(class='dot')
+        td(class='dot')
+        td(class='dot')
+        td(class='dot')
+        td(class='dot')
+        td(class='dot')
+      // show decimal value of column 
+      tr(class='showDec') 
+        td(class='dot')
+        td(class='dot')
+        td(class='dot')
+        td(class='dot')
+        td(class='dot')
+        td(class='dot')
+    tfoot
+      // show the time
+      tr(class='showTime') 
+        td(class='dot')
+        td(class='dot')
+        td(class='dot')
+        td(class='dot')
+        td(class='dot')
+        td(class='dot')
+  block append
+    script(src='./js/script.js')

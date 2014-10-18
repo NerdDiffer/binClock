@@ -1,6 +1,6 @@
 var express = require('express');
 var path = require('path');
-var favicon = require('static-favicon');
+var favicon = require('serve-favicon');
 var logger = require('morgan');
 
 var routes = require('./routes/index');
@@ -11,7 +11,7 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-app.use(favicon());
+app.use(favicon(path.join(__dirname, 'pub/favicon.ico')));
 app.use(logger('dev'));
 app.use(require('less-middleware')(path.join(__dirname, 'pub')));
 app.use(express.static(path.join(__dirname, 'pub')));
