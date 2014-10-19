@@ -39,9 +39,12 @@ module.exports = function(grunt) {
       },
       js: {
         files: {
-          'pub/js/script.js': ['dev/js/draw.js', 'dev/js/util.js', 'dev/js/input.js']
+          'pub/js/script.js': ['dev/js/timeSplit.js', 'dev/js/ticker.js', 'dev/js/output.js']
         }
       }
+    },
+    browserify: {
+      'pub/js/script.js': ['dev/js/timeSplit.js', 'dev/js/ticker.js'] 
     },
     watch: {
       concat: {
@@ -51,6 +54,10 @@ module.exports = function(grunt) {
       lessLintCompile: {
         files: 'dev/less/*.less',
         tasks: ['lesslint:lint', 'less:compile']
+      },
+      browserify: {
+        files: 'dev/js/*.js',
+        tasks: 'browserify' 
       }
     }
   });
@@ -60,9 +67,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-lesslint');
 
   // tasks
-  grunt.registerTask('default', 'watch');
+  grunt.registerTask('default', 'watch:lessLintCompile', 'watch:browserify');
   grunt.registerTask('test', 'lesslint', 'jshint:dev');
 };
