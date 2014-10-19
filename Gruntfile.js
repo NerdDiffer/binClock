@@ -40,16 +40,15 @@ module.exports = function(grunt) {
     },
     browserify: {
       dist: {
+        options: {
+
+        },
         files: {
           'pub/js/script.js': [
-            'dev/js/jquery.min.js', 
             'dev/js/timeSplit.js', 
             'dev/js/ticker.js', 
             'dev/js/output.js'
           ]
-        },
-        options: {
-          exclude: ['dev/js/jquery.js', 'dev/js/jquery.min.map'],
         }
       },
     },
