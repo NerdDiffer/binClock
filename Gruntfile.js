@@ -4,7 +4,7 @@ module.exports = function(grunt) {
     lesslint: {
       options: {
         csslint: {
-          ids: 0,
+          'ids': 0,
           'box-model': 0,
           'overqualified-elements': 0
         }
@@ -15,62 +15,80 @@ module.exports = function(grunt) {
     },
     less: {
       options: {
-        path: 'dev/less',
         cleancss: true,
       },
       compile: {
         files: {
-          'pub/styles/styles.css': 'dev/less/*.less'
+          'pub/styles/styles.css': [
+            'dev/less/variables.less', 
+            'dev/less/main.less', 
+            'dev/less/table.less',
+            'dev/less/dots.less',
+            'dev/less/*.less',
+          ]
         }
       }
     },
     jshint: {
       all: ['Gruntfile.js', 'package.json', 'dev/js/*.js'],
       dev: {
-        src: ['dev/js/*.js']
+        src: ['!dev/js/jquery*js', 'dev/js/*.js']
       },
-      runner: {
+      runners: {
         src: ['Gruntfile.js', 'package.json'] 
       }
     },
-    concat: {
-      options: {
-
-      },
-      js: {
-        files: {
-          'pub/js/script.js': ['dev/js/timeSplit.js', 'dev/js/ticker.js', 'dev/js/output.js']
-        }
-      }
-    },
     browserify: {
-      'pub/js/script.js': ['dev/js/timeSplit.js', 'dev/js/ticker.js'] 
+      dist: {
+        files: {
+          'pub/js/script.js': [
+            'dev/js/jquery.min.js', 
+            'dev/js/timeSplit.js', 
+            'dev/js/ticker.js', 
+            'dev/js/output.js'
+          ]
+        },
+        options: {
+          exclude: ['dev/js/jquery.js', 'dev/js/jquery.min.map'],
+        }
+      },
+    },
+    uglify: {
+      options: {
+        mangle: true,
+        sourceMap: true 
+      },
+     js: {
+       files: {
+          'pub/js/script.min.js': 'pub/js/script.js'
+       }
+     }
     },
     watch: {
-      concat: {
-        files: 'dev/js/*.js',
-        tasks: 'concat:js' 
-      },
       lessLintCompile: {
         files: 'dev/less/*.less',
         tasks: ['lesslint:lint', 'less:compile']
       },
       browserify: {
-        files: 'dev/js/*.js',
-        tasks: 'browserify' 
+        files: ['!dev/js/jquery.js', 'dev/js/*.js'],
+        tasks: 'browserify:dist' 
       }
     }
   });
 
   // load plugins
-  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-lesslint');
 
   // tasks
-  grunt.registerTask('default', 'watch:lessLintCompile', 'watch:browserify');
-  grunt.registerTask('test', 'lesslint', 'jshint:dev');
+  grunt.registerTask('default', 'watch');
+  grunt.registerTask('min', 'uglify');
+  grunt.registerTask('test', [
+    'lesslint', 
+    'jshint:dev'
+  ]);
 };

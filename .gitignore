@@ -1,7 +1,8 @@
+dev/js/jquery*
 npm-debug.log
 node_modules/
+pub/js/*
+pub/styles/*.css
+zzz-archive/
 .fuse_hidden*
 *.swp
-zzz-archive/
-pub/js/*.js
-pub/styles/*.css
