@@ -5,7 +5,6 @@ table {
   border-collapse: inherit;
   border-spacing: 0;
   text-align: center;
-  //outline: 1px dashed black;
 }
 th {
   text-decoration: underline;  
@@ -24,24 +23,23 @@ tr.base td {
     font-size: 3rem; 
   }
 }
+tr td:nth-child(even) {
+  border-right: 1px solid black;
+  tfoot & {
+    border: none;
+  }
+}
 tr.showBin, tr.showDec, tr.showTime {
   background-color: @color4-lighter;
   & td {
     border-bottom: 1px dashed black;
+    height: 4rem;
+    font-size: 2.5rem;
   }
   & td.mark {
     font-size: 1.5rem;
   }
 }
-tr.showBin td {
-  height: 2rem;
-}
-tr.showDec td, tr.showTime td {
-  font-size: 2.5rem;
-}
 tr.showTime td {
   border-bottom: none;
-}
-tr td:nth-child(even) {
-  border-right: 1px solid black;
 }
