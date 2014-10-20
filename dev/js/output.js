@@ -13,6 +13,7 @@ var timeStr;
 var dot = $('td.dot div');
 var showBin = $('tr.showBin td span').toArray();
 var showDec = $('tr.showDec td span').toArray();
+var showTime = $('tr.showTime td:first-of-type span');
 
 var ticker = new Ticker();
 $(document).ready(function() {
@@ -35,6 +36,12 @@ $(document).ready(function() {
     showDec.forEach(function(val, ind) {
       $(val).text(regTime[ind]);
     });
+    showTime.text(function() {
+      return timeStr.substr(0,2) + 
+        ':' + timeStr.substr(2,2) + 
+        ':' + timeStr.substr(4);
+    });
+    
   });
   
 });
