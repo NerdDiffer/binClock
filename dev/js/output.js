@@ -14,7 +14,6 @@ var dot = $('td.dot div');
 var showBin = $('tr.showBin td span').toArray();
 var showDec = $('tr.showDec td span').toArray();
 
-
 var ticker = new Ticker();
 $(document).ready(function() {
 
@@ -31,7 +30,7 @@ $(document).ready(function() {
     hashes.ssOnes(regTime[5]);
 
     showBin.forEach(function(val, ind) {
-      $(val).text(regTime[ind]);
+      $(val).text(binaryTime[ind]);
     });
     showDec.forEach(function(val, ind) {
       $(val).text(regTime[ind]);
