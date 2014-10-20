@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>binary clock</title>
+    <link rel="stylesheet" href="./styles/styles.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="content">
+        <h1>binary clock</h1>
+        <table>
+          <thead>
+            <tr>
+              <th colspan="2">HH</th>
+              <th colspan="2">MM</th>
+              <th colspan="2">SS</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- 2^3 = 8-->
+            <tr class="base">
+              <td class="null"></td>
+              <td class="dot">
+                <div id="hh1000"></div>
+              </td>
+              <td class="null"></td>
+              <td class="dot">
+                <div id="mm1000"></div>
+              </td>
+              <td class="null"></td>
+              <td class="dot">
+                <div id="ss1000"></div>
+              </td>
+              <td class="mark">8</td>
+            </tr>
+            <!-- 2^2 = 4-->
+            <tr class="base">
+              <td class="null"></td>
+              <td class="dot">
+                <div id="hh0100"></div>
+              </td>
+              <td class="dot">
+                <div id="mm101000"></div>
+              </td>
+              <td class="dot">
+                <div id="mm0100"></div>
+              </td>
+              <td class="dot">
+                <div id="ss101000"></div>
+              </td>
+              <td class="dot">
+                <div id="ss0100"></div>
+              </td>
+              <td class="mark">4</td>
+            </tr>
+            <!-- 2^1 = 2-->
+            <tr class="base">
+              <td class="dot">
+                <div id="hh10100"></div>
+              </td>
+              <td class="dot">
+                <div id="hh0010"></div>
+              </td>
+              <td class="dot">
+                <div id="mm10100"></div>
+              </td>
+              <td class="dot">
+                <div id="mm0010"></div>
+              </td>
+              <td class="dot">
+                <div id="ss10100"></div>
+              </td>
+              <td class="dot">
+                <div id="ss0010"></div>
+              </td>
+              <td class="mark">2</td>
+            </tr>
+            <!-- 2^0 = 1-->
+            <tr class="base">
+              <td class="dot">
+                <div id="hh1010"></div>
+              </td>
+              <td class="dot">
+                <div id="hh0001"></div>
+              </td>
+              <td class="dot">
+                <div id="mm1010"></div>
+              </td>
+              <td class="dot">
+                <div id="mm0001"></div>
+              </td>
+              <td class="dot">
+                <div id="ss1010"></div>
+              </td>
+              <td class="dot">
+                <div id="ss0001"></div>
+              </td>
+              <td class="mark">1</td>
+            </tr>
+            <!-- show binary value of column -->
+            <tr class="showBin">
+              <td><span></span></td>
+              <td><span></span></td>
+              <td><span></span></td>
+              <td><span></span></td>
+              <td><span></span></td>
+              <td><span></span></td>
+              <td class="mark">binary</td>
+            </tr>
+            <!-- show decimal value of column -->
+            <tr class="showDec">
+              <td><span></span></td>
+              <td><span></span></td>
+              <td><span></span></td>
+              <td><span></span></td>
+              <td><span></span></td>
+              <td><span></span></td>
+              <td class="mark">decimal</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <!-- show the time-->
+            <tr class="showTime">
+              <td colspan="6"><span></span></td>
+              <td class="mark">the time</td>
+            </tr>
+          </tfoot>
+        </table>
+        <script src="./js/script.js"></script>
+      </div>
+    </div>
+  </body>
+</html>
