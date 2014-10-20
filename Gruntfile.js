@@ -32,7 +32,7 @@ module.exports = function(grunt) {
     jshint: {
       all: ['Gruntfile.js', 'package.json', 'dev/js/*.js'],
       dev: {
-        src: ['!dev/js/jquery*js', 'dev/js/*.js']
+        src: 'dev/js/*.js'
       },
       runners: {
         src: ['Gruntfile.js', 'package.json'] 
@@ -47,6 +47,7 @@ module.exports = function(grunt) {
           'pub/js/script.js': [
             'dev/js/timeSplit.js', 
             'dev/js/ticker.js', 
+            'dev/js/hashes.js', 
             'dev/js/output.js'
           ]
         }
@@ -69,7 +70,7 @@ module.exports = function(grunt) {
         tasks: ['lesslint:lint', 'less:compile']
       },
       browserify: {
-        files: ['!dev/js/jquery.js', 'dev/js/*.js'],
+        files: 'dev/js/*.js',
         tasks: 'browserify:dist' 
       }
     }

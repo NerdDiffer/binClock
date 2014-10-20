@@ -23,16 +23,21 @@ tr.base td {
   &.mark {
     font-size: 3rem; 
   }
-
 }
 tr.showBin, tr.showDec, tr.showTime {
   background-color: @color4-lighter;
   & td {
     border-bottom: 1px dashed black;
   }
+  & td.mark {
+    font-size: 1.5rem;
+  }
 }
 tr.showBin td {
-  height: 1.5rem;
+  height: 2rem;
+}
+tr.showDec td, tr.showTime td {
+  font-size: 2.5rem;
 }
 tr.showTime td {
   border-bottom: none;

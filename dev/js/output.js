@@ -1,7 +1,8 @@
-var ticker = require('./ticker').Ticker
+var Ticker = require('./ticker').Ticker
   , $ = require('../../pub/js/jquery.min.js')
+  , time = require('./timeSplit')
   , base = require('all-your-base')
-  , time = require('./timeSplit');
+  , hashes = require('./hashes');
 
 var decToBin = base.decToBin;
 var parseTime = time.parseTime;
@@ -10,43 +11,31 @@ var splitTime = time.splitTime;
 var timeStr;
 
 var dot = $('td.dot div');
-var showBin_td = $('tr.showBin td span');
-var showDec_td = $('tr.showDec td span');
-var bins = showBin_td.toArray();
-var decs = showDec_td.toArray();
+var showBin = $('tr.showBin td span').toArray();
+var showDec = $('tr.showDec td span').toArray();
 
-var ticker = new ticker();
 
-function randomColor() {
-	var randomInteger = function(min, max) {
-		return Math.floor(min + Math.random() * ((max - min) + 1));
-	};
-	var	r,g,b;
-	var rgb = [r,g,b];
-	return { 'background-color': 'rgb(' + rgb.map(function(color) {
-		return randomInteger(0, 255);
-	}).toString() + ')'};
-
-  // call like this:
-  //$(this).css(randomColor());
-}
-
+var ticker = new Ticker();
 $(document).ready(function() {
+
   ticker.on('tick', function() {
     timeStr = parseTime(new Date().toTimeString());
     var binaryTime = splitTime(timeStr, decToBin);
     var regTime = splitTime(timeStr);
-    var times = [binaryTime, regTime];
-    
-    bins.forEach(function(val, ind){
-      $(val).text(function() {
-        return times[0][ind]; 
-      });
+
+    hashes.hhTens(regTime[0]);
+    hashes.hhOnes(regTime[1]);
+    hashes.mmTens(regTime[2]);
+    hashes.mmOnes(regTime[3]);
+    hashes.ssTens(regTime[4]);
+    hashes.ssOnes(regTime[5]);
+
+    showBin.forEach(function(val, ind) {
+      $(val).text(regTime[ind]);
     });
-    decs.forEach(function(val, ind) {
-      $(val).text(function() {
-        return times[1][ind]; 
-      });
+    showDec.forEach(function(val, ind) {
+      $(val).text(regTime[ind]);
     });
   });
+  
 });
