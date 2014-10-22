@@ -253,20 +253,8 @@ function hhTens(num) {
       hash['1'].removeClass('active');
       hash['2'].addClass('active');
       break;
-    case '3': 
-      hash['2'].removeClass('active');
-      hash['3'].addClass('active');
-      break;
-    case '4': 
-      hash['3'].removeClass('active');
-      hash['4'].addClass('active');
-      break;
-    case '5': 
-      hash['4'].removeClass('active');
-      hash['5'].addClass('active');
-      break;
     case '0': 
-      hash['5'].removeClass('active');
+      hash['2'].removeClass('active');
       break;
     default:
       break;
