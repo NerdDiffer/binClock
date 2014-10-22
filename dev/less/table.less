@@ -11,6 +11,9 @@ th {
   height: 3rem;
   border-bottom: 1px solid @color3;
   font-size: 2rem; 
+  table.hexTable & {
+    border-bottom: none; 
+  } 
 }
 td {
   width: 6rem;
@@ -18,18 +21,18 @@ td {
   text-align: center;
   padding: 1%;
 }
+tr td:nth-child(even) {
+  border-right: 1px solid black;
+  table.hexTable & {
+    //border-right: none; 
+  }
+}
 tr.base td {
   &.mark {
     font-size: 3rem; 
   }
 }
-tr td:nth-child(even) {
-  border-right: 1px solid black;
-  tfoot & {
-    border: none;
-  }
-}
-tr.showBin, tr.showDec, tr.showTime {
+tr.showBin, tr.showHex, tr.showDec, tr.showTime {
   background-color: @color4-lighter;
   & td {
     border-bottom: 1px dashed black;
@@ -40,6 +43,23 @@ tr.showBin, tr.showDec, tr.showTime {
     font-size: 1.5rem;
   }
 }
-tr.showTime td {
-  border-bottom: none;
+tr.showHex {
+  border-top: none;
+  td {
+    border-right: 1px solid black;
+  }
+  & td:nth-child(4) {
+    border-right: none;
+  }
+}
+tr.showTime {
+  & td {
+    border: none; 
+  }
+  & td:first-of-type {
+    border-right: 1px solid black; 
+  }
+}
+tfoot td {
+  border: none;
 }

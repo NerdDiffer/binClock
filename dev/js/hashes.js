@@ -1,4 +1,4 @@
-var $ = require('../../pub/js/jquery.js');
+var $ = require('../../pub/js/jquery.min.js');
 
 function ssOnes(num) {
   var hash = {

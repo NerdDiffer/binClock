@@ -1,0 +1,108 @@
+extends ./layout
+
+block content
+  h1= title
+  table.binTable
+    thead 
+      tr
+        th(colspan='2') HH
+        th(colspan='2') MM
+        th(colspan='2') SS
+        th
+    tbody
+      // 2^3 = 8
+      tr(class='base') 
+        td(class='null')
+        td(class='dot')
+          div#hh1000
+        td(class='null')
+        td(class='dot')
+          div#mm1000
+        td(class='null')
+        td(class='dot')
+          div#ss1000
+        td(class='mark') 8
+      // 2^2 = 4
+      tr(class='base')
+        td(class='null')
+        td(class='dot')
+          div#hh0100
+        td(class='dot')
+          div#mm101000
+        td(class='dot')
+          div#mm0100
+        td(class='dot')
+          div#ss101000
+        td(class='dot')
+          div#ss0100
+        td(class='mark') 4
+      // 2^1 = 2
+      tr(class='base') 
+        td(class='dot')
+          div#hh10100
+        td(class='dot')
+          div#hh0010
+        td(class='dot')
+          div#mm10100
+        td(class='dot')
+          div#mm0010
+        td(class='dot')
+          div#ss10100
+        td(class='dot')
+          div#ss0010
+        td(class='mark') 2
+      // 2^0 = 1
+      tr(class='base') 
+        td(class='dot')
+          div#hh1010
+        td(class='dot')
+          div#hh0001
+        td(class='dot')
+          div#mm1010
+        td(class='dot')
+          div#mm0001
+        td(class='dot')
+          div#ss1010
+        td(class='dot')
+          div#ss0001
+        td(class='mark') 1
+      // show binary value of column 
+      tr(class='showBin') 
+        td
+          span
+        td
+          span
+        td
+          span
+        td
+          span
+        td
+          span
+        td
+          span
+        td(class='mark') binary
+      // show decimal value of column 
+      tr(class='showDec') 
+        td
+          span
+        td
+          span
+        td
+          span
+        td
+          span
+        td
+          span
+        td
+          span
+        td(class='mark') decimal
+    tfoot
+      // show the time
+      tr(class='showTime') 
+        td(colspan=6)
+          span
+        td(class='mark') the time
+  hr
+  block append
+    script(src='./js/script.min.js')
+  include ./chooser
