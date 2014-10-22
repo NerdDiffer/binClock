@@ -1,10 +1,9 @@
 var Ticker = require('./ticker').Ticker
   , $ = require('../../pub/js/jquery.min.js')
   , time = require('./timeSplit')
-  , base = require('all-your-base')
+  , decToBin = require('all-your-base').decToBin
   , hashes = require('./hashes');
 
-var decToBin = base.decToBin;
 var parseTime = time.parseTime;
 var splitConvertTime = time.splitConvertTime;
 var splitTime = time.splitTime;

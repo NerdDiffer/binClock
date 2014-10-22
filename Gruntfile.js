@@ -45,6 +45,7 @@ module.exports = function(grunt) {
         },
         files: {
           'pub/js/script.js': [
+            'pub/js/jquery.min.js',
             'dev/js/timeSplit.js', 
             'dev/js/ticker.js', 
             'dev/js/hashes.js', 
@@ -64,6 +65,11 @@ module.exports = function(grunt) {
        }
      }
     },
+    runOnce: {
+      js: 'browserify:dist',
+      less: 'less:compile',
+      min: 'uglify'
+    },
     watch: {
       lessLintCompile: {
         files: 'dev/less/*.less',
@@ -71,7 +77,7 @@ module.exports = function(grunt) {
       },
       browserify: {
         files: 'dev/js/*.js',
-        tasks: 'browserify:dist' 
+        tasks: ['browserify:dist', 'uglify']
       }
     }
   });
@@ -85,8 +91,23 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-lesslint');
 
   // tasks
-  grunt.registerTask('default', 'watch');
+  grunt.registerTask('default', [
+    'watch'
+  ]);
   grunt.registerTask('min', 'uglify');
+  //grunt.registerTask('runOnce', [
+  //  'less',
+  //  'browserify:dist', 
+  //  'uglify'
+  //]);
+  grunt.registerMultiTask(
+    'runOnce', 
+    'compile less & js files, then minify them', 
+    function() {
+      grunt.log.writeln(this.target + ': ' + this.data);
+      grunt.task.run(this.data);
+    }
+  );
   grunt.registerTask('test', [
     'lesslint', 
     'jshint:dev'

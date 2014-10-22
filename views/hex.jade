@@ -1,0 +1,46 @@
+extends clock
+
+block content
+  h1= title
+  table.hexTable
+    thead 
+      tr
+        th(colspan=2) HH
+        th(colspan=2) MM
+        th(colspan=2) SS
+        th
+    tbody
+      // show hexadecimal value of column 
+      tr(class='showHex') 
+        td(colspan=2)
+          span
+        td(colspan=2)
+          span
+        td(colspan=2)
+          span
+        td(class='mark') hexadecimal
+      // show decimal value of column 
+      tr(class='showDec') 
+        td
+          span
+        td
+          span
+        td
+          span
+        td
+          span
+        td
+          span
+        td
+          span
+        td(class='mark') decimal
+    tfoot
+      // show the time
+      tr(class='showTime') 
+        td(colspan=6)
+          span
+        td(class='mark') the time
+  hr 
+  block append
+    script(src='./js/script.min.js')
+  include ./chooser

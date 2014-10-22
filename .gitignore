@@ -1,5 +1,8 @@
 npm-debug.log
 node_modules/
+pub/index.html
+pub/js/script*
+pub/styles/*.css
 zzz-archive/
 .fuse_hidden*
 *.swp
