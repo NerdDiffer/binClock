@@ -14,7 +14,7 @@ var hexTime = TimeObj.HexTime
   , decTime = TimeObj.DecTime;
 
 // count number of base-10 seconds since midnight & do some hexadecimal stuff
-var hexCount = function(t) {
+function hexCount (t) {
   //var d = new Date().toTimeString();
   //var t = parseTime(d);
   //console.log(d, t);
@@ -42,7 +42,7 @@ var hexCount = function(t) {
   });
   //console.log(timeMorphed);
   return timeMorphed;
-};
+}
 
 /** 
  * nice little utility function 
@@ -53,41 +53,50 @@ var hexCount = function(t) {
  */
 $.fn.exists = function(callback) {
   var args = [].slice.call(arguments, 1);
-  if (this.length) 
+  if (this.length) {
     callback.call(this, args);
+  }
   return this;
 };
 
-$(document).ready(function() {
-  $('table.hexTable').exists(function() {
-    var showHex = $('tr.showHex td span').toArray();
-    var rows = $('.hexTable tr');
-    var colorThis = $('body');
+var showHex = $('tr.showHex td span').toArray();
+var rows = $('.hexTable tr');
+var showBin = $('tr.showBin td span').toArray();
+var showDec = $('tr.showDec td span').toArray();
+var showTime = $('tr.showTime td:first-of-type span');
+var t, regTime, binTime, hexTime;
 
-    var t, time;
-    (function () {
-      setInterval(function() {
+var colorThis = $('body');
+
+$(document).ready(function() {
+  setInterval(function() {
+    $('table.hexTable').exists(function() {
+      (function () {
         t = parseTime(new Date().toTimeString());
-        time = hexCount(t);
+        var hexTime = hexCount(t);
+        regTime = splitTime(t);
+        
         showHex.forEach(function(val, ind) {
-          $(val).text(time[ind]);
+          $(val).text(hexTime[ind]);
         });
-        colorThis.css('background-color', '#' + time.join(''));
-        rows.css('background-color', '#' + time.join(''));
-      }, 1000);
-    })();
-  });
-  $('table.binTable').exists(function() {
-    var dot = $('td.dot div');
-    var showBin = $('tr.showBin td span').toArray();
-    var showDec = $('tr.showDec td span').toArray();
-    var showTime = $('tr.showTime td:first-of-type span');
-    var timeStr;
-    (function () {
-      setInterval(function() {
-        timeStr = parseTime(new Date().toTimeString());
-        var binaryTime = splitTime(timeStr, decToBin);
-        var regTime = splitTime(timeStr);
+        showDec.forEach(function(val, ind) {
+          $(val).text(regTime[ind]);
+        });
+        showTime.text(function() {
+          return t.substr(0,2) + 
+            ':' + t.substr(2,2) + 
+            ':' + t.substr(4);
+        });
+        colorThis.css('background-color', '#' + hexTime.join(''));
+        rows.css('background-color', '#' + hexTime.join(''));
+      })();
+      //hexTick();
+    });
+    $('table.binTable').exists(function() {
+      (function () {
+        t = parseTime(new Date().toTimeString());
+        binTime = splitTime(t, decToBin);
+        regTime = splitTime(t);
 
         hashes.hhTens(regTime[0]);
         hashes.hhOnes(regTime[1]);
@@ -97,17 +106,18 @@ $(document).ready(function() {
         hashes.ssOnes(regTime[5]);
 
         showBin.forEach(function(val, ind) {
-          $(val).text(binaryTime[ind]);
+          $(val).text(binTime[ind]);
         });
         showDec.forEach(function(val, ind) {
           $(val).text(regTime[ind]);
         });
         showTime.text(function() {
-          return timeStr.substr(0,2) + 
-            ':' + timeStr.substr(2,2) + 
-            ':' + timeStr.substr(4);
+          return t.substr(0,2) + 
+            ':' + t.substr(2,2) + 
+            ':' + t.substr(4);
         });
-      }, 1000);
-    })();
-  });
+      })();
+      //binTick();
+    });
+  }, 1000);
 });
