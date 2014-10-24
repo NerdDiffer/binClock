@@ -39,7 +39,7 @@ module.exports = function(grunt) {
       }
     },
     browserify: {
-      dist: {
+      binHex: {
         options: {
 
         },
@@ -47,26 +47,41 @@ module.exports = function(grunt) {
           'pub/js/script.js': [
             'pub/js/jquery.min.js',
             'dev/js/timeSplit.js', 
-            'dev/js/ticker.js', 
+            'dev/js/TimeObj.js', 
+            'dev/js/hashes.js', 
+            'dev/js/output.js',
+          ]
+        }
+      }
+    },
+    concat: {
+      dist: {
+        options: {
+        
+        },
+        files: {
+          'pub/js/script.js': [
+            'dev/js/timeSplit.js', 
             'dev/js/hashes.js', 
             'dev/js/output.js'
           ]
         }
-      },
+      
+      }
     },
     uglify: {
       options: {
         mangle: true,
         sourceMap: true 
       },
-     js: {
+      binHex: {
        files: {
           'pub/js/script.min.js': 'pub/js/script.js'
-       }
-     }
+        }
+      },
     },
     runOnce: {
-      js: 'browserify:dist',
+      binHex: 'browserify:binHex',
       less: 'less:compile',
       min: 'uglify'
     },
@@ -75,15 +90,16 @@ module.exports = function(grunt) {
         files: 'dev/less/*.less',
         tasks: ['lesslint:lint', 'less:compile']
       },
-      browserify: {
+      binHex: {
         files: 'dev/js/*.js',
-        tasks: ['browserify:dist', 'uglify']
+        tasks: ['browserify:binHex', 'uglify']
       }
     }
   });
 
   // load plugins
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-uglify');

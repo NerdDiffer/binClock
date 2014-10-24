@@ -2,6 +2,7 @@ npm-debug.log
 node_modules/
 pub/index.html
 pub/js/script*
+pub/js/hex*
 pub/styles/*.css
 zzz-archive/
 .fuse_hidden*
